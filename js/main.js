@@ -6,6 +6,10 @@
 
 let today = new Date();
 let month = String(today.getMonth() + 1);
+
+//hard code month to test emoji switching
+//let month = 6;
+
 console.log(month);
 
 let zipInput = 0;
@@ -65,11 +69,18 @@ async function callAPI() {
             console.log(data);
             console.log(currSeason);
             //parse JSON and send to HTML
+            //switch content cards to visible
             document.getElementById("weather-output").style.visibility = "visible";
+            
+            //send cityName to header
             document.getElementById("cityName").innerHTML = data.name;
+            
+            //calculate temperature in the different measurement systems
             const tempK = Math.round(data.main.temp);
             const tempC = tempK - 273;
             const tempF = Math.round(tempC * 9 / 5 + 32);
+
+            //if-else series to determine which thermometer icon to display based on temperature
             if (tempF > 90) {
                 document.getElementById("conditionIcon").className = "fas fa-thermometer-full";
             }
@@ -85,11 +96,16 @@ async function callAPI() {
             else {
                 document.getElementById("conditionIcon").className = "fas fa-thermometer-empty";
             }
-
+            
+            //display temperature in all measurement systems
             document.getElementById("tempK").innerHTML = tempK + " K";
             document.getElementById("tempC").innerHTML = tempC + " C";
             document.getElementById("tempF").innerHTML = tempF + " F";
+
+            //display current weather description from API
             document.getElementById("conditionText").innerHTML = data.weather[0].description;
+            
+            //display season emoji string based on current month
             document.getElementById("seasonEmoji").innerHTML = currSeason;
         }
 
