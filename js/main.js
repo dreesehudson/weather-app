@@ -118,6 +118,7 @@ async function callAPI() {
 
 }
 
-
+// focus cursor on input element upon loading
+document.getElementById("zipInput").focus()
 
 //END
