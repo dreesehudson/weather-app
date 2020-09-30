@@ -111,8 +111,8 @@ async function callAPI() {
 
         )
         .catch(function (error) {
-            //document.getElementById("weather-output").style.visibility = "hidden";
-            //alert("Enter a valid zip code.");
+            document.getElementById("weather-output").style.visibility = "hidden";
+            alert("Enter a valid zip code.");
         });
 
 
